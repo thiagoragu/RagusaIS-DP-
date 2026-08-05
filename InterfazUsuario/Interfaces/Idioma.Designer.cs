@@ -76,6 +76,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(658, 162);
             this.dataGridView2.TabIndex = 3;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // btnAgregarIdioma
             // 
@@ -84,7 +85,7 @@
             this.btnAgregarIdioma.Size = new System.Drawing.Size(130, 23);
             this.btnAgregarIdioma.TabIndex = 4;
             this.btnAgregarIdioma.Tag = "Idioma_Agregar";
-            this.btnAgregarIdioma.Text = "button1";
+            this.btnAgregarIdioma.Text = "Agregar Idioma";
             this.btnAgregarIdioma.UseVisualStyleBackColor = true;
             this.btnAgregarIdioma.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -95,7 +96,7 @@
             this.btnModificarIdioma.Size = new System.Drawing.Size(130, 23);
             this.btnModificarIdioma.TabIndex = 6;
             this.btnModificarIdioma.Tag = "Idioma_Modificar";
-            this.btnModificarIdioma.Text = "button2";
+            this.btnModificarIdioma.Text = "Modificar Traduccion";
             this.btnModificarIdioma.UseVisualStyleBackColor = true;
             this.btnModificarIdioma.Click += new System.EventHandler(this.button2_Click);
             // 

@@ -125,5 +125,13 @@ namespace InterfazUsuario.Interfaces
         {
             Cargar();
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            BE_Producto ProductoS = (BE_Producto)dataGridView1.CurrentRow.DataBoundItem;
+            textBox1.Text = ProductoS.Nombre;
+            textBox2.Text = ProductoS.Descripcion;
+            textBox3.Text = ProductoS.ToString();
+        }
     }
 }

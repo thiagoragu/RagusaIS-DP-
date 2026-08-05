@@ -78,41 +78,47 @@ namespace InterfazUsuario.Interfaces
         {
             try
             {
-                BE_Producto ProductoSeleccionado = (BE_Producto)dataGridView1.CurrentRow.DataBoundItem;
-                BE_Historico Historico = (BE_Historico)dataGridView2.CurrentRow.DataBoundItem;
-
-                if (ProductoSeleccionado != null || Historico != null)
+                if(dataGridView2.CurrentRow?.DataBoundItem != null && dataGridView2.CurrentRow != null)
                 {
-                    BE_Historico HistoricoRecuperado = new BE_Historico();
-                    BE_Historico HistoricoOlvidado = new BE_Historico();
+                    BE_Producto ProductoSeleccionado = (BE_Producto)dataGridView1.CurrentRow.DataBoundItem;
+                    BE_Historico Historico = (BE_Historico)dataGridView2.CurrentRow.DataBoundItem;
 
-                    HistoricoOlvidado.NombreProducto = Historico.NombreProducto;
-                    HistoricoOlvidado.Descripcion = Historico.Descripcion;
-                    HistoricoOlvidado.PrecioProducto = Historico.PrecioProducto;
-                    HistoricoOlvidado.IDProducto = ProductoSeleccionado.ID;
+                    if (ProductoSeleccionado != null && Historico != null)
+                    {
+                        BE_Historico HistoricoRecuperado = new BE_Historico();
+                        BE_Historico HistoricoOlvidado = new BE_Historico();
 
-                    HistoricoRecuperado.NombreAnterior = Historico.NombreAnterior;
-                    HistoricoRecuperado.DescripcionAnterior = Historico.DescripcionAnterior;
-                    HistoricoRecuperado.PrecioAnterior = Historico.PrecioAnterior;
-                    HistoricoRecuperado.FechaCambio = DateTime.Now;
-                    HistoricoRecuperado.IDProducto = ProductoSeleccionado.ID;
+                        HistoricoOlvidado.NombreProducto = Historico.NombreProducto;
+                        HistoricoOlvidado.Descripcion = Historico.Descripcion;
+                        HistoricoOlvidado.PrecioProducto = Historico.PrecioProducto;
+                        HistoricoOlvidado.IDProducto = ProductoSeleccionado.ID;
 
-                    BE_Producto ProductoNuevo = new BE_Producto();
-                    ProductoNuevo.ID = ProductoSeleccionado.ID;
-                    ProductoNuevo.Nombre = HistoricoRecuperado.NombreAnterior;
-                    ProductoNuevo.Descripcion = HistoricoRecuperado.DescripcionAnterior;
-                    ProductoNuevo.Precio = HistoricoRecuperado.PrecioAnterior;
-                    string DV = BLLProducto.CalcularDVH(ProductoNuevo.ToString());
-                    ProductoNuevo.DV = DV;
+                        HistoricoRecuperado.NombreAnterior = Historico.NombreAnterior;
+                        HistoricoRecuperado.DescripcionAnterior = Historico.DescripcionAnterior;
+                        HistoricoRecuperado.PrecioAnterior = Historico.PrecioAnterior;
+                        HistoricoRecuperado.FechaCambio = DateTime.Now;
+                        HistoricoRecuperado.IDProducto = ProductoSeleccionado.ID;
 
-                    BLLProducto.ModificarProducto(ProductoNuevo);
-                    //BLLHistorico.AgregarHistorico(HistoricoOlvidado, HistoricoRecuperado);
-                    Cargar();
+                        BE_Producto ProductoNuevo = new BE_Producto();
+                        ProductoNuevo.ID = ProductoSeleccionado.ID;
+                        ProductoNuevo.Nombre = HistoricoRecuperado.NombreAnterior;
+                        ProductoNuevo.Descripcion = HistoricoRecuperado.DescripcionAnterior;
+                        ProductoNuevo.Precio = HistoricoRecuperado.PrecioAnterior;
+                        string DV = BLLProducto.CalcularDVH(ProductoNuevo.ToString());
+                        ProductoNuevo.DV = DV;
+
+                        BLLProducto.ModificarProducto(ProductoNuevo);
+                        Cargar();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un producto y su histórico para continuar. No se realizan cambios.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Debe seleccionar un producto y su histórico para continuar. No se realizan cambios.");
+                MessageBox.Show(ex.Message);
             }
         }
         public void ActualizarIdioma(int Idioma)

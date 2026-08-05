@@ -106,6 +106,7 @@ namespace InterfazUsuario.Interfaces
                         BLL_Permiso.AgregarRelacionPH(IDPermisoC, Permisos.ID);
                     }
                 }
+                MessageBox.Show("Se Agregó el permiso correctamente");
                 CargarPermisos();
             }
             catch (Exception ex)
@@ -147,6 +148,7 @@ namespace InterfazUsuario.Interfaces
                     BLL_Permiso.ModificarRelacion(IDPermisoSeleccionado, Permisos.ID);
                 }
                 BLL_Permiso.ModificarNombre(IDPermisoSeleccionado, PermisoNombreNuevo);
+                MessageBox.Show("Se modificó el permiso correctamente");
                 CargarPermisos();
             }
             else
@@ -164,6 +166,7 @@ namespace InterfazUsuario.Interfaces
 
                 BLL_Permiso.EliminarPermiso(IDPermisoPadre);
                 CargarPermisos();
+                MessageBox.Show("Se eliminó el permiso correctamente");
             }
             catch (Exception ex)
             {
@@ -178,6 +181,13 @@ namespace InterfazUsuario.Interfaces
             this.btnCrearPermiso.Text = BLLIdioma.GetTraduccion(btnCrearPermiso.Tag.ToString(), Idioma);
             this.btnEliminarPermiso.Text = BLLIdioma.GetTraduccion(btnEliminarPermiso.Tag.ToString(), Idioma);
             this.btnModificarPermiso.Text = BLLIdioma.GetTraduccion(btnModificarPermiso.Tag.ToString(), Idioma);
+        }
+
+        private void treeView1_Click(object sender, EventArgs e)
+        {
+            TreeNode NodoSeleccionado = treeView1.SelectedNode;
+
+            textBox2.Text = NodoSeleccionado.Text;
         }
     }
 }

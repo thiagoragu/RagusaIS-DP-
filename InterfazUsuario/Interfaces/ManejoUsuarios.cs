@@ -123,6 +123,7 @@ namespace InterfazUsuario.Interfaces
                         UsuarioModificado.Nombre = txbNombre.Text;
                         UsuarioModificado.Contrasena = txbContrasena.Text;
                         UsuarioModificado.ID = UsuarioSeleccionado.ID;
+                        UsuarioModificado.Permiso = (BE_Permiso)cmbPermiso.SelectedItem;
 
                         BLLUsuario.ModificarUsuario(UsuarioModificado);
                         ActualizarForm();
@@ -145,6 +146,14 @@ namespace InterfazUsuario.Interfaces
         {
             cmbPermiso.DataSource = null;
             cmbPermiso.DataSource = BLLPermiso.ObtenerPermisoC();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            BE_Usuario UsuarioSeleccionado = (BE_Usuario)dataGridView1.CurrentRow.DataBoundItem;
+
+            txbNombre.Text = UsuarioSeleccionado.Nombre;
+            txbContrasena.Text = UsuarioSeleccionado.Contrasena;
         }
     }
 }

@@ -73,6 +73,7 @@ namespace DAL
             TablaH.Add("@ID", usuario.ID);
             TablaH.Add("@Nombre", usuario.Nombre);
             TablaH.Add("@Contrasena", usuario.Contrasena);
+            TablaH.Add("@IDPermiso", usuario.Permiso.ID);
             return DAL.EscribirBase(Consulta,TablaH);
         }
     }

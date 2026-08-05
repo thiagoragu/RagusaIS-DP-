@@ -45,6 +45,7 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(223, 426);
             this.treeView1.TabIndex = 0;
+            this.treeView1.Click += new System.EventHandler(this.treeView1_Click);
             // 
             // listBox1
             // 

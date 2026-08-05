@@ -16,7 +16,6 @@ namespace InterfazUsuario
 {
     public partial class MenuSeleccion : Form, IObserverIdioma
     {
-
         BLL_Usuario BLLUsuario;
         BLL_Registro BLLRegistro;
         BLL_Idioma BLL_Idioma;
@@ -94,6 +93,11 @@ namespace InterfazUsuario
             {
                 if (Validar())
                 {
+                    foreach (Form formHijo in this.MdiChildren)
+                    {
+                        formHijo.Close();
+                    }
+
                     BLLUsuario.Desloguearse();
 
                     BE_Registro Registro = new BE_Registro();

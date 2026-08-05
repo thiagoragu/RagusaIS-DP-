@@ -120,5 +120,12 @@ namespace InterfazUsuario.Interfaces
             btnAgregarIdioma.Text = BLLIdioma.GetTraduccion(btnAgregarIdioma.Tag.ToString(), Idioma);
             btnModificarIdioma.Text = BLLIdioma.GetTraduccion(btnModificarIdioma.Tag.ToString(), Idioma);
         }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            BE_Traduccion Traduccion = (BE_Traduccion)dataGridView2.CurrentRow.DataBoundItem;
+
+            textBox2.Text = Traduccion.Traduccion;
+        }
     }
 }
