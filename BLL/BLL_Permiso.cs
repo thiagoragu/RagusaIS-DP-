@@ -34,7 +34,25 @@ namespace BLL
 
         public bool AgregarRelacionPH(int IDPadre, int IDHijo)
         {
+            if (GeneraCiclo(IDPadre, IDHijo))
+                throw new InvalidOperationException(
+                    "No se puede agregar ese permiso: generaria una referencia circular.");
+
             return DAL.AgregarRelacionPH(IDPadre, IDHijo);
+        }
+
+        public bool GeneraCiclo(int IDPadre, int IDHijo)
+        {
+            if (IDPadre == IDHijo)
+                return true;
+
+            List<BE_Permiso> arbol = ObtenerPermisosArbol();
+            BE_Permiso nodoHijo = arbol.FirstOrDefault(p => p.ID == IDHijo);
+            BE_Permiso permisoPadre = arbol.FirstOrDefault(p => p.ID == IDPadre);
+
+            if (nodoHijo == null || permisoPadre == null)
+                return false;
+            return nodoHijo.TienePermiso(permisoPadre);
         }
 
         public bool EliminarPermiso(int IDPadre)
@@ -57,6 +75,10 @@ namespace BLL
 
         public bool ModificarRelacion(int IDPadre, int IDHijo)
         {
+            if (GeneraCiclo(IDPadre, IDHijo))
+                throw new InvalidOperationException(
+                    "No se puede agregar ese permiso: generaria una referencia circular.");
+
             DAL.AgregarRelacionPH(IDPadre, IDHijo);
             return false;
         }

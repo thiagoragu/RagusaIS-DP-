@@ -33,7 +33,7 @@ namespace InterfazUsuario.Interfaces
             CargarPermisos();
         }
 
-        private void CargarPermisos() 
+        private void CargarPermisos()
         {
             cargarArbolPermisos();
             cargarPermisosSimples();
@@ -49,7 +49,7 @@ namespace InterfazUsuario.Interfaces
         {
             this.treeView1.Nodes.Clear();
 
-            foreach(BE_Permiso permiso in BLL_Permiso.ObtenerPermisosArbol())
+            foreach (BE_Permiso permiso in BLL_Permiso.ObtenerPermisosArbol())
             {
                 this.treeView1.Nodes.Add(crearNodoPermiso(permiso));
                 treeView1.ExpandAll();
@@ -93,11 +93,16 @@ namespace InterfazUsuario.Interfaces
                     {
                         permisosSeleccionados.Add(perm);
                     }
-                    
+
                     int IDPermisoC = BLL_Permiso.AgregarPermisoCompuesto(permisoNombre);
 
                     foreach (BE_Permiso Permisos in permisosSeleccionados)
                     {
+                        if (BLL_Permiso.GeneraCiclo(IDPermisoC, Permisos.ID))
+                        {
+                            MessageBox.Show("No se puede asignar '" + Permisos.Nombre + "' porque generaria una referencia circular.");
+                            continue;
+                        }
                         BLL_Permiso.AgregarRelacionPH(IDPermisoC, Permisos.ID);
                     }
                 }
@@ -107,49 +112,46 @@ namespace InterfazUsuario.Interfaces
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
+            List<BE_Permiso> permisosSeleccionados = new List<BE_Permiso>();
+            string PermisoNombreNuevo = this.textBox2.Text;
+            TreeNode NodoSeleccionado = treeView1.SelectedNode;
+            int IDPermisoSeleccionado = (int)NodoSeleccionado.Tag;
+
+            if (!string.IsNullOrEmpty(PermisoNombreNuevo))
             {
-                List<BE_Permiso> permisosSeleccionados = new List<BE_Permiso>();
-                string PermisoNombreNuevo = this.textBox2.Text;
-                TreeNode NodoSeleccionado = treeView1.SelectedNode;
-                int IDPermisoSeleccionado = (int)NodoSeleccionado.Tag;
-
-                if (!string.IsNullOrEmpty(PermisoNombreNuevo))
+                foreach (BE_Permiso perm in this.listBox1.SelectedItems)
                 {
-                    foreach (BE_Permiso perm in this.listBox1.SelectedItems)
+                    if (perm.ID == IDPermisoSeleccionado)
                     {
-                        if (perm.ID == IDPermisoSeleccionado)
-                        {
-                            MessageBox.Show("No se puede asignar el mismo permiso a si mismo. Se procede a agregar el resto");
-                        }
-                        else
-                        {
-                            permisosSeleccionados.Add(perm);
-                        }
+                        MessageBox.Show("No se puede asignar el mismo permiso a si mismo. Se procede a agregar el resto");
                     }
-
-                    BLL_Permiso.EliminarRelacionesPermisoC(IDPermisoSeleccionado);
-
-                    foreach (BE_Permiso Permisos in permisosSeleccionados)
+                    else if (BLL_Permiso.GeneraCiclo(IDPermisoSeleccionado, perm.ID))
                     {
-                        BLL_Permiso.ModificarRelacion(IDPermisoSeleccionado, Permisos.ID);
+                        MessageBox.Show("No se puede asignar '" + perm.Nombre + "' porque generaria una referencia circular. Se procede a agregar el resto");
                     }
-                    BLL_Permiso.ModificarNombre(IDPermisoSeleccionado, PermisoNombreNuevo);
-                    CargarPermisos();
+                    else
+                    {
+                        permisosSeleccionados.Add(perm);
+                    }
                 }
-                else
+
+                BLL_Permiso.EliminarRelacionesPermisoC(IDPermisoSeleccionado);
+
+                foreach (BE_Permiso Permisos in permisosSeleccionados)
                 {
-                    MessageBox.Show("Debe seleccionar al menos un permiso para realizar la nueva relacion");
+                    BLL_Permiso.ModificarRelacion(IDPermisoSeleccionado, Permisos.ID);
                 }
+                BLL_Permiso.ModificarNombre(IDPermisoSeleccionado, PermisoNombreNuevo);
+                CargarPermisos();
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Debe seleccionar al menos un permiso para realizar la nueva relacion");
             }
         }
 

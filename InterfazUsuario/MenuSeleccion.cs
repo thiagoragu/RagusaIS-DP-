@@ -17,7 +17,6 @@ namespace InterfazUsuario
     public partial class MenuSeleccion : Form, IObserverIdioma
     {
         //
-        //Conectar GitHub.-
         //Corregir errores minimos indicados por lukitas.-
         //
 
