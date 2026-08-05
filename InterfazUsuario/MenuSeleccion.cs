@@ -16,10 +16,6 @@ namespace InterfazUsuario
 {
     public partial class MenuSeleccion : Form, IObserverIdioma
     {
-        //
-        //Corregir errores minimos indicados por lukitas.-
-        //
-
 
         BLL_Usuario BLLUsuario;
         BLL_Registro BLLRegistro;
