@@ -13,7 +13,7 @@ namespace BE
         public string Nombre { get; set; }
         public string Contrasena { get; set; }
         public BE_Permiso Permiso { get; set; }
-
+        public List<BE_Permiso> ListaPermisos {  get; set; }
         public BE_Usuario() { }
 
         public override string ToString()

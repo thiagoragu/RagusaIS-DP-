@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ControlStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ControlStock.Designer.cs">
+      <DependentUpon>ControlStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\HistoricoLogs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Interfaces\ControlStock.resx">
+      <DependentUpon>ControlStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Interfaces\HistoricoLogs.resx">
       <DependentUpon>HistoricoLogs.cs</DependentUpon>
     </EmbeddedResource>

@@ -61,7 +61,7 @@ namespace InterfazUsuario.Interfaces
         {
             try
             {
-                if (textBox1.Text == null && textBox1.Text == "")
+                if (textBox1.Text != null && textBox1.Text != "")
                 {
                     string IdiomaNuevo = textBox1.Text;
                     BLLIdioma.AgregarIdioma(IdiomaNuevo);
@@ -83,7 +83,6 @@ namespace InterfazUsuario.Interfaces
         {
             try
             {
-
                 if (dataGridView2.CurrentRow?.DataBoundItem != null && dataGridView2.CurrentRow != null)
                 {
                     BE_Traduccion Traduccion = (BE_Traduccion)dataGridView2.CurrentRow.DataBoundItem;
@@ -126,6 +125,11 @@ namespace InterfazUsuario.Interfaces
             BE_Traduccion Traduccion = (BE_Traduccion)dataGridView2.CurrentRow.DataBoundItem;
 
             textBox2.Text = Traduccion.Traduccion;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

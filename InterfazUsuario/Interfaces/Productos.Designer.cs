@@ -86,28 +86,28 @@
             this.textBox1.Location = new System.Drawing.Point(576, 49);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(212, 20);
-            this.textBox1.TabIndex = 4;
+            this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(576, 80);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(212, 20);
-            this.textBox2.TabIndex = 5;
+            this.textBox2.TabIndex = 2;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(576, 110);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(212, 20);
-            this.textBox3.TabIndex = 6;
+            this.textBox3.TabIndex = 3;
             // 
             // btnAgregar
             // 
             this.btnAgregar.Location = new System.Drawing.Point(529, 151);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(259, 23);
-            this.btnAgregar.TabIndex = 7;
+            this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Tag = "Producto_btnAgregar";
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(529, 196);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(259, 23);
-            this.btnEliminar.TabIndex = 8;
+            this.btnEliminar.TabIndex = 5;
             this.btnEliminar.Tag = "Producto_btnEliminar";
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             this.btnModificar.Location = new System.Drawing.Point(529, 242);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(259, 23);
-            this.btnModificar.TabIndex = 9;
+            this.btnModificar.TabIndex = 6;
             this.btnModificar.Tag = "Producto_btnModificar";
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;

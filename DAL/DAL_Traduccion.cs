@@ -18,6 +18,16 @@ namespace DAL
             DALBaseDatos = new DAL_BaseDatos();
         }
         
+        public bool CrearTraduccion(int IDTag, int IDIdioma)
+        {
+            string Consulta = "S_CrearTraduccion";
+            Hashtable TablaH1 = new Hashtable();
+            TablaH1["IDTag"] = IDTag;
+            TablaH1["IDIdioma"] = IDIdioma;
+
+            return DALBaseDatos.EscribirBase(Consulta, TablaH1);
+        }
+
         public bool ModificarTraduccion(int IDIdioma, int IDTag, string Traduccion)
         {
             string Consulta = "S_ModificarTraduccion";

@@ -56,7 +56,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(15, 25);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(185, 162);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // lblTraducciones
@@ -75,7 +75,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(15, 206);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(658, 162);
-            this.dataGridView2.TabIndex = 3;
+            this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // btnAgregarIdioma
@@ -83,7 +83,7 @@
             this.btnAgregarIdioma.Location = new System.Drawing.Point(260, 51);
             this.btnAgregarIdioma.Name = "btnAgregarIdioma";
             this.btnAgregarIdioma.Size = new System.Drawing.Size(130, 23);
-            this.btnAgregarIdioma.TabIndex = 4;
+            this.btnAgregarIdioma.TabIndex = 2;
             this.btnAgregarIdioma.Tag = "Idioma_Agregar";
             this.btnAgregarIdioma.Text = "Agregar Idioma";
             this.btnAgregarIdioma.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@
             this.btnModificarIdioma.Location = new System.Drawing.Point(260, 400);
             this.btnModificarIdioma.Name = "btnModificarIdioma";
             this.btnModificarIdioma.Size = new System.Drawing.Size(130, 23);
-            this.btnModificarIdioma.TabIndex = 6;
+            this.btnModificarIdioma.TabIndex = 4;
             this.btnModificarIdioma.Tag = "Idioma_Modificar";
             this.btnModificarIdioma.Text = "Modificar Traduccion";
             this.btnModificarIdioma.UseVisualStyleBackColor = true;
@@ -105,14 +105,15 @@
             this.textBox1.Location = new System.Drawing.Point(206, 25);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(224, 20);
-            this.textBox1.TabIndex = 7;
+            this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(206, 374);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(224, 20);
-            this.textBox2.TabIndex = 8;
+            this.textBox2.TabIndex = 3;
             // 
             // Idioma
             // 

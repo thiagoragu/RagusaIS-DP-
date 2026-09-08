@@ -60,14 +60,14 @@
             this.textBox1.Location = new System.Drawing.Point(76, 27);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(158, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(76, 59);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(158, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBox2.TabIndex = 2;
             this.textBox2.UseSystemPasswordChar = true;
             // 
             // btnLoguearse
@@ -75,7 +75,7 @@
             this.btnLoguearse.Location = new System.Drawing.Point(42, 96);
             this.btnLoguearse.Name = "btnLoguearse";
             this.btnLoguearse.Size = new System.Drawing.Size(158, 23);
-            this.btnLoguearse.TabIndex = 4;
+            this.btnLoguearse.TabIndex = 3;
             this.btnLoguearse.Tag = "Usuario_btnLoguearse";
             this.btnLoguearse.Text = "Loguearse";
             this.btnLoguearse.UseVisualStyleBackColor = true;

@@ -46,6 +46,7 @@
     <Compile Include="BLL_Permiso.cs" />
     <Compile Include="BLL_Producto.cs" />
     <Compile Include="BLL_Registro.cs" />
+    <Compile Include="BLL_Stock.cs" />
     <Compile Include="BLL_Traduccion.cs" />
     <Compile Include="BLL_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

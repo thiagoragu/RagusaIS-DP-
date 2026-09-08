@@ -12,6 +12,7 @@ namespace BLL
         public DAL_Traduccion DALTraduccion = new DAL_Traduccion();
         public bool ModificarTraduccion (int IDIdioma, int IDTag, string Traduccion)
         {
+            DALTraduccion.CrearTraduccion(IDTag, IDIdioma);
             return DALTraduccion.ModificarTraduccion(IDIdioma, IDTag, Traduccion);
         }
     }

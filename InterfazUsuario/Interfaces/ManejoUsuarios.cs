@@ -19,6 +19,7 @@ namespace InterfazUsuario.Interfaces
         BLL_Usuario BLLUsuario;
         BLL_Idioma BLLIdioma;
         BLL_Permiso BLLPermiso;
+        BE_Usuario Usuario;
         public ManejoUsuarios()
         {
             BLLUsuario = new BLL_Usuario();
@@ -54,12 +55,19 @@ namespace InterfazUsuario.Interfaces
                     BE_Usuario UsuarioCreado = new BE_Usuario();
                     UsuarioCreado.Nombre = txbNombre.Text;
                     UsuarioCreado.Contrasena = txbContrasena.Text;
-                    UsuarioCreado.Permiso = (BE_Permiso)cmbPermiso.SelectedItem;
+                    UsuarioCreado.Permiso = (BE_Permiso)lsbPermiso.SelectedItem;
 
-                    BE_Permiso PermisoSeleccionado = (BE_Permiso)cmbPermiso.SelectedItem;
+                    BE_Permiso PermisoSeleccionado = (BE_Permiso)lsbPermiso.SelectedItem;
                     UsuarioCreado.ID = PermisoSeleccionado.ID;
 
-                    BLLUsuario.AgregarUsuario(UsuarioCreado);
+                    if (BLLUsuario.AgregarUsuario(UsuarioCreado) == true) 
+                    {
+                        MessageBox.Show("Se agrego el usuario correctamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo agregar el usuario");
+                    }
                     ActualizarForm();
                 }
             }
@@ -75,7 +83,6 @@ namespace InterfazUsuario.Interfaces
             lblNombre.Text = BLLIdioma.GetTraduccion(lblNombre.Tag.ToString(), Idioma);
             lblContrasena.Text = BLLIdioma.GetTraduccion(lblContrasena.Tag.ToString(), Idioma);
             lblPermiso.Text = BLLIdioma.GetTraduccion(lblPermiso.Tag.ToString(), Idioma);
-            chkPermiso.Text = BLLIdioma.GetTraduccion(chkPermiso.Tag.ToString(), Idioma);
             btnAgregar.Text = BLLIdioma.GetTraduccion(btnAgregar.Tag.ToString(), Idioma);
             btnBorrar.Text = BLLIdioma.GetTraduccion(btnBorrar.Tag.ToString(), Idioma);
             btnModificar.Text = BLLIdioma.GetTraduccion(btnModificar.Tag.ToString(), Idioma);
@@ -88,8 +95,20 @@ namespace InterfazUsuario.Interfaces
                 if (dataGridView1.CurrentRow?.DataBoundItem != null && dataGridView1.CurrentRow != null)
                 {
                     BE_Usuario UsuarioSeleccionado = (BE_Usuario)dataGridView1.CurrentRow.DataBoundItem;
-                    BLLUsuario.EliminarUsuario(UsuarioSeleccionado);
-                    ActualizarForm();
+
+                    BE_Usuario UsuarioUtilizado = new BE_Usuario();
+                    UsuarioUtilizado.Nombre = SesionSingleton.Instance.Usuario.Nombre;
+                    UsuarioUtilizado.Contrasena = SesionSingleton.Instance.Usuario.Contrasena;
+
+                    if(BLLUsuario.VerificarUsuario(UsuarioUtilizado,UsuarioSeleccionado) == true)
+                    {
+                        BLLUsuario.EliminarUsuario(UsuarioSeleccionado);
+                        ActualizarForm();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No puede borrar el mismo usuario que se está utilizando. Error");
+                    }
                 }
                 else 
                 {
@@ -123,7 +142,7 @@ namespace InterfazUsuario.Interfaces
                         UsuarioModificado.Nombre = txbNombre.Text;
                         UsuarioModificado.Contrasena = txbContrasena.Text;
                         UsuarioModificado.ID = UsuarioSeleccionado.ID;
-                        UsuarioModificado.Permiso = (BE_Permiso)cmbPermiso.SelectedItem;
+                        UsuarioModificado.Permiso = (BE_Permiso)lsbPermiso.SelectedItem;
 
                         BLLUsuario.ModificarUsuario(UsuarioModificado);
                         ActualizarForm();
@@ -144,8 +163,8 @@ namespace InterfazUsuario.Interfaces
 
         public void CargarComboBox()
         {
-            cmbPermiso.DataSource = null;
-            cmbPermiso.DataSource = BLLPermiso.ObtenerPermisoC();
+            lsbPermiso.DataSource = null;
+            lsbPermiso.DataSource = BLLPermiso.ObtenerPermisoC();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -154,6 +173,18 @@ namespace InterfazUsuario.Interfaces
 
             txbNombre.Text = UsuarioSeleccionado.Nombre;
             txbContrasena.Text = UsuarioSeleccionado.Contrasena;
+
+            Usuario = (BE_Usuario)this.dataGridView1.CurrentRow.DataBoundItem;
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = Usuario.ListaPermisos;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
         }
     }
 }

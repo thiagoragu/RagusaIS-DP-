@@ -26,7 +26,7 @@ namespace InterfazUsuario
         BE_Permiso ControlPermisos = new BE_PermisoS("", 19, false);
         BE_Permiso HistoricoLogueos = new BE_PermisoS("", 20, false);
         BE_Permiso ControlProductos = new BE_PermisoS("", 21, false);
-
+        BE_Permiso ControlStock = new BE_PermisoS("", 21, false);
 
         public MenuSeleccion()
         {
@@ -50,7 +50,7 @@ namespace InterfazUsuario
 
         private void MenuSeleccion_Load(object sender, EventArgs e)
         {
-            this.comboBox1.DataSource = BLL_Idioma.GetIdiomas();
+            ObtenerIdiomas();
         }
 
         public bool Validar()
@@ -66,6 +66,8 @@ namespace InterfazUsuario
                 this.mnuControlPermisos.Enabled = usuario.Permiso.TienePermiso(ControlPermisos);
                 this.mnuHistoricoLogueos.Enabled = usuario.Permiso.TienePermiso(HistoricoLogueos);
                 this.mnuControlProductos.Enabled = usuario.Permiso.TienePermiso(ControlProductos);
+                this.mnuControlStock.Enabled = usuario.Permiso.TienePermiso(ControlStock);
+                this.mnuUsuario.Enabled = false;
             }
             else
             {
@@ -76,6 +78,8 @@ namespace InterfazUsuario
                 this.mnuControlPermisos.Enabled = false;
                 this.mnuHistoricoLogueos.Enabled = false;
                 this.mnuControlProductos.Enabled = false;
+                this.mnuControlStock.Enabled = false;
+                this.mnuUsuario.Enabled = true;
             }
             return true;
         }
@@ -122,6 +126,7 @@ namespace InterfazUsuario
         {
             ManejoUsuarios formulario = new ManejoUsuarios();
             formulario.MdiParent = this;
+            ObtenerIdiomas();
             formulario.Show();
         }
 
@@ -129,6 +134,7 @@ namespace InterfazUsuario
         {
             Permisos formulario = new Permisos();
             formulario.MdiParent = this;
+            ObtenerIdiomas();
             formulario.Show();
         }
 
@@ -136,6 +142,7 @@ namespace InterfazUsuario
         {
             HistoricoLogs formulario = new HistoricoLogs();
             formulario.MdiParent = this;
+            ObtenerIdiomas();
             formulario.Show();
         }
 
@@ -143,6 +150,7 @@ namespace InterfazUsuario
         {
             Productos formulario = new Productos();
             formulario.MdiParent = this;
+            ObtenerIdiomas();
             formulario.Show();
         }
 
@@ -150,6 +158,7 @@ namespace InterfazUsuario
         {
             HistoricoProductos formulario = new HistoricoProductos();
             formulario.MdiParent = this;
+            ObtenerIdiomas();
             formulario.Show();
         }
 
@@ -174,6 +183,29 @@ namespace InterfazUsuario
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void ObtenerIdiomas()
+        {
+            this.comboBox1.DataSource = BLL_Idioma.GetIdiomas();
+        }
+
+        private void MenuSeleccion_MouseClick(object sender, MouseEventArgs e)
+        {
+            ObtenerIdiomas();
+        }
+
+        private void MenuSeleccion_Click(object sender, EventArgs e)
+        {
+            ObtenerIdiomas();
+        }
+
+        private void permisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ControlStock formulario = new ControlStock();
+            formulario.MdiParent = this;
+            ObtenerIdiomas();
+            formulario.Show();
         }
     }
 }

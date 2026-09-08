@@ -6,7 +6,6 @@ namespace Servicios
 {
     public class AdministradorIdioma
     {
-        //Singleton para no tener multiples instacias abiertas
         private static readonly AdministradorIdioma _instancia = new AdministradorIdioma();
 
         private readonly List<IObserverIdioma> _observadores;

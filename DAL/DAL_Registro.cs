@@ -1,4 +1,5 @@
-﻿using BE;
+﻿
+using BE;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -74,8 +75,6 @@ namespace DAL
                 }
             }
             return ListaRegistrosFecha;
-
-            //TIENE QUE HABER UNA FORMA DE MINIMIZAR CODIGO CON "ListarRegistros";
         }
     }
 }

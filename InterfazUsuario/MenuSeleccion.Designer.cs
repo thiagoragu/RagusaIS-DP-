@@ -37,11 +37,11 @@
             this.mnuHistoricoLogueos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuControlProductos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRegistroHistoricos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuControlStock = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lblEstado = new System.Windows.Forms.Label();
             this.btnDesloguearse = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.permisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,10 +55,10 @@
             this.mnuHistoricoLogueos,
             this.mnuControlProductos,
             this.mnuRegistroHistoricos,
-            this.permisosToolStripMenuItem});
+            this.mnuControlStock});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(978, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1035, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -124,6 +124,15 @@
             this.mnuRegistroHistoricos.Text = "Registro de Historicos";
             this.mnuRegistroHistoricos.Click += new System.EventHandler(this.mnuRegistroHistoricos_Click);
             // 
+            // mnuControlStock
+            // 
+            this.mnuControlStock.Enabled = false;
+            this.mnuControlStock.Name = "mnuControlStock";
+            this.mnuControlStock.Size = new System.Drawing.Size(91, 20);
+            this.mnuControlStock.Tag = "Menu_ControlStock";
+            this.mnuControlStock.Text = "Control Stock";
+            this.mnuControlStock.Click += new System.EventHandler(this.permisosToolStripMenuItem_Click);
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
@@ -131,9 +140,10 @@
             // 
             // lblEstado
             // 
+            this.lblEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblEstado.AutoSize = true;
             this.lblEstado.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblEstado.Location = new System.Drawing.Point(12, 345);
+            this.lblEstado.Location = new System.Drawing.Point(12, 317);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(39, 17);
             this.lblEstado.TabIndex = 3;
@@ -143,12 +153,13 @@
             // 
             // btnDesloguearse
             // 
+            this.btnDesloguearse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDesloguearse.AutoSize = true;
             this.btnDesloguearse.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnDesloguearse.Location = new System.Drawing.Point(12, 365);
+            this.btnDesloguearse.Location = new System.Drawing.Point(12, 349);
             this.btnDesloguearse.Name = "btnDesloguearse";
-            this.btnDesloguearse.Size = new System.Drawing.Size(103, 28);
-            this.btnDesloguearse.TabIndex = 4;
+            this.btnDesloguearse.Size = new System.Drawing.Size(211, 40);
+            this.btnDesloguearse.TabIndex = 2;
             this.btnDesloguearse.Tag = "Menu_Desloguearse";
             this.btnDesloguearse.Text = "Desloguearse";
             this.btnDesloguearse.UseCompatibleTextRendering = true;
@@ -158,25 +169,18 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(883, 0);
+            this.comboBox1.Location = new System.Drawing.Point(940, 0);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(83, 21);
-            this.comboBox1.TabIndex = 6;
+            this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
-            // 
-            // permisosToolStripMenuItem
-            // 
-            //this.permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
-            //this.permisosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            //this.permisosToolStripMenuItem.Text = "Permisos";
-            //this.permisosToolStripMenuItem.Click += new System.EventHandler(this.permisosToolStripMenuItem_Click);
             // 
             // MenuSeleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(978, 401);
+            this.ClientSize = new System.Drawing.Size(1035, 401);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnDesloguearse);
             this.Controls.Add(this.lblEstado);
@@ -187,6 +191,8 @@
             this.Tag = "MenuSeleccion_Form";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MenuSeleccion_Load);
+            this.Click += new System.EventHandler(this.MenuSeleccion_Click);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MenuSeleccion_MouseClick);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -208,7 +214,7 @@
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Button btnDesloguearse;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ToolStripMenuItem permisosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuControlStock;
     }
 }
 

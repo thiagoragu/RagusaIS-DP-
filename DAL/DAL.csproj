@@ -48,6 +48,7 @@
     <Compile Include="DAL_Permisos.cs" />
     <Compile Include="DAL_Producto.cs" />
     <Compile Include="DAL_Registro.cs" />
+    <Compile Include="DAL_Stock.cs" />
     <Compile Include="DAL_Traduccion.cs" />
     <Compile Include="DAL_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

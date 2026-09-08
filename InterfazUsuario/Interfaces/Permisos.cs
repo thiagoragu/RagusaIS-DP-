@@ -185,9 +185,17 @@ namespace InterfazUsuario.Interfaces
 
         private void treeView1_Click(object sender, EventArgs e)
         {
-            TreeNode NodoSeleccionado = treeView1.SelectedNode;
+            if(treeView1.SelectedNode != null)
+            {
+                TreeNode NodoSeleccionado = treeView1.SelectedNode;
 
-            textBox2.Text = NodoSeleccionado.Text;
+                textBox2.Text = NodoSeleccionado.Text;
+            }
+            else
+            {
+                MessageBox.Show("El nodo seleccionado da Null");
+            }
+
         }
     }
 }

@@ -48,7 +48,7 @@
             this.btnActualizar.Location = new System.Drawing.Point(474, 409);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(314, 29);
-            this.btnActualizar.TabIndex = 1;
+            this.btnActualizar.TabIndex = 3;
             this.btnActualizar.Tag = "HL_btnRefrescar";
             this.btnActualizar.Text = "Refrescar Lista de Logueos\r\n";
             this.btnActualizar.UseVisualStyleBackColor = true;
@@ -59,7 +59,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(474, 50);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(314, 20);
-            this.dateTimePicker1.TabIndex = 2;
+            this.dateTimePicker1.TabIndex = 1;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // btnBuscar
@@ -67,7 +67,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(474, 86);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(314, 23);
-            this.btnBuscar.TabIndex = 3;
+            this.btnBuscar.TabIndex = 2;
             this.btnBuscar.Tag = "HL_btnBuscar";
             this.btnBuscar.Text = "Buscar Logueos";
             this.btnBuscar.UseVisualStyleBackColor = true;

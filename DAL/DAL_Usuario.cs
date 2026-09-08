@@ -12,7 +12,12 @@ namespace DAL
     public class DAL_Usuario
     {
         Hashtable TablaH;
-        DAL_BaseDatos DAL = new DAL_BaseDatos();
+        DAL_BaseDatos DAL;
+
+        public DAL_Usuario()
+        {
+            DAL = new DAL_BaseDatos();
+        }
 
         public List<BE_Usuario> ObtenerUsuarios()
         {
@@ -32,6 +37,36 @@ namespace DAL
                     usuario.Nombre = Row["NombreUsuario"].ToString();
                     usuario.Contrasena = Row["Contrasena"].ToString();
                     usuario.Permiso = PermisoUsuario;
+
+                    DAL_BaseDatos DAL2 = new DAL_BaseDatos();
+                    TablaH = new Hashtable();
+                    TablaH.Add(@"CodUsuario", usuario.ID);
+                    string Query2 = "S_LeerUsuario_Permiso";
+                    DataTable TablaU = DAL2.LeerBase(Query2, TablaH);
+
+                    List<BE_Permiso> ListaPermisos = new List<BE_Permiso>();
+
+                    if(TablaU.Rows.Count > 0)
+                    {
+                        foreach(DataRow filas in TablaU.Rows)
+                        {
+                            if (filas["Compuesto"] is "False")
+                            {
+                                BE_PermisoS PermisoS = new BE_PermisoS();
+                                PermisoS.ID = Convert.ToInt32(filas["ID"]);
+                                PermisoS.Nombre = filas["Name"].ToString();
+                                ListaPermisos.Add(PermisoS);
+                            }
+                            else
+                            {
+                                BE_PermisoC PermisoC = new BE_PermisoC();
+                                PermisoC.ID = Convert.ToInt32(filas["ID"]);
+                                PermisoC.Nombre = filas["Name"].ToString();
+                                ListaPermisos.Add(PermisoC);
+                            }
+                            usuario.ListaPermisos = ListaPermisos;
+                        }
+                    }
                     ListaUsuarios.Add(usuario);
                 }
             }
@@ -43,6 +78,7 @@ namespace DAL
             string Consulta = "S_Loguearse";
             TablaH = new Hashtable();
             TablaH.Add("@Nombre", Nombre);
+
             TablaH.Add("@Contrasena", Contrasena);
             DataTable TablaProv = DAL.LeerBase(Consulta, TablaH);
             return TablaProv.Rows.Count > 0;

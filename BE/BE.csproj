@@ -50,6 +50,7 @@
     <Compile Include="BE_PermisoS.cs" />
     <Compile Include="BE_Producto.cs" />
     <Compile Include="BE_Registro.cs" />
+    <Compile Include="BE_Stock.cs" />
     <Compile Include="BE_Traduccion.cs" />
     <Compile Include="BE_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -87,6 +87,18 @@ namespace BLL
             usuario.Contrasena = Encriptado.Hashear(usuario.Contrasena);
             return DALUsuario.Modificar(usuario);
         }
+
+        public bool VerificarUsuario(BE_Usuario usuario, BE_Usuario usuario2)
+        {
+            if(usuario.Nombre != usuario2.Nombre && usuario.Contrasena != usuario2.Contrasena)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
 }

@@ -61,7 +61,7 @@
             this.textBox1.Location = new System.Drawing.Point(367, 27);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(156, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBox1.TabIndex = 1;
             // 
             // lblCrearPermiso
             // 
@@ -78,7 +78,7 @@
             this.btnCrearPermiso.Location = new System.Drawing.Point(367, 53);
             this.btnCrearPermiso.Name = "btnCrearPermiso";
             this.btnCrearPermiso.Size = new System.Drawing.Size(156, 23);
-            this.btnCrearPermiso.TabIndex = 4;
+            this.btnCrearPermiso.TabIndex = 2;
             this.btnCrearPermiso.Tag = "Permiso_btnCrear";
             this.btnCrearPermiso.Text = "Crear Permiso Compuesto";
             this.btnCrearPermiso.UseVisualStyleBackColor = true;
@@ -89,7 +89,7 @@
             this.textBox2.Location = new System.Drawing.Point(367, 118);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(156, 20);
-            this.textBox2.TabIndex = 5;
+            this.textBox2.TabIndex = 3;
             // 
             // lblModificarPermiso
             // 
@@ -106,7 +106,7 @@
             this.btnModificarPermiso.Location = new System.Drawing.Point(367, 144);
             this.btnModificarPermiso.Name = "btnModificarPermiso";
             this.btnModificarPermiso.Size = new System.Drawing.Size(156, 23);
-            this.btnModificarPermiso.TabIndex = 7;
+            this.btnModificarPermiso.TabIndex = 4;
             this.btnModificarPermiso.Tag = "Permiso_btnModificar";
             this.btnModificarPermiso.Text = "Modificar Permiso";
             this.btnModificarPermiso.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             this.btnEliminarPermiso.Location = new System.Drawing.Point(367, 203);
             this.btnEliminarPermiso.Name = "btnEliminarPermiso";
             this.btnEliminarPermiso.Size = new System.Drawing.Size(156, 23);
-            this.btnEliminarPermiso.TabIndex = 8;
+            this.btnEliminarPermiso.TabIndex = 5;
             this.btnEliminarPermiso.Tag = "Permiso_btnEliminar";
             this.btnEliminarPermiso.Text = "Eliminar Permiso Compuesto";
             this.btnEliminarPermiso.UseVisualStyleBackColor = true;
