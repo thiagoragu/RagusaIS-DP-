@@ -27,7 +27,6 @@ namespace InterfazUsuario.Interfaces
             BLLUsuario = new BLL_Usuario();
             BLLRegistro = new BLL_Registro();
             BLLIdioma = new BLL_Idioma();
-
             AdministradorIdioma.Instancia.Registrar(this);
 
             Validate();

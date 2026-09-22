@@ -11,7 +11,6 @@ namespace BLL
     public class BLL_Idioma
     {
         public DAL_Idioma DAL_Idioma;
-        public BE_Traduccion BE_Traduccion;
 
         public BLL_Idioma()
         {

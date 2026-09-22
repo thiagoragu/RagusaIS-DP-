@@ -15,7 +15,7 @@ namespace DAL
     {
         public DAL_BaseDatos DAL;
 
-        public DAL_Permisos() 
+        public DAL_Permisos()
         {
             DAL = new DAL_BaseDatos();
         }
@@ -82,10 +82,11 @@ namespace DAL
             return lista;
         }
 
-        public BE_Permiso ObtenerPermisoUsuario(string usuario)
+        public BE_Permiso ObtenerPermisoUsuario(string usuario, string contrasena)
         {
             Hashtable parametros = new Hashtable();
             parametros.Add("@Nombre", usuario);
+            parametros.Add("Contrasena", contrasena);
 
             DataTable tabla = DAL.LeerBase("S_ObtenerPermisoPorNombreUsuario", parametros);
 
@@ -104,6 +105,40 @@ namespace DAL
 
             return null;
         }
+
+        public List<BE_Permiso> ObtenerPermisoUsuario2(string usuario, string contrasena)
+        {
+            Hashtable parametros = new Hashtable();
+            parametros.Add("@Nombre", usuario);
+
+            DataTable tabla = DAL.LeerBase("S_ObtenerPermisoPorNombreUsuario", parametros);
+
+            List<BE_Permiso> permisosUsuario = new List<BE_Permiso>();
+
+            if (tabla.Rows.Count == 0)
+            {
+              return permisosUsuario;
+            }
+            else
+            {
+                List<BE_Permiso> permisos = ObtenerPermisosArbol();
+
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    int idPermiso = Convert.ToInt32(fila["ID"]);
+
+                    foreach (BE_Permiso permiso in permisos)
+                    {
+                        if (permiso.ID == idPermiso)
+                        {
+                            permisosUsuario.Add(permiso);
+                            break;
+                        }
+                    }
+                }
+                return permisosUsuario;
+            }   
+        } 
 
         public int AgregarPermisoCompuesto(string Nombre)
         {

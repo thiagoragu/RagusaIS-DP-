@@ -53,7 +53,7 @@ namespace BLL
 
                     Usuario.Nombre = nombre;
                     Usuario.Contrasena = contrasena;
-                    Usuario.Permiso = DALPermisos.ObtenerPermisoUsuario(nombre);
+                    Usuario.ListaPermisos = DALPermisos.ObtenerPermisoUsuario2(nombre, contrasena);
                     
                     SesionSingleton.Instance.Loguearse(Usuario);
                     return true;
@@ -71,15 +71,26 @@ namespace BLL
             return true;
         }
 
-        public bool AgregarUsuario(BE_Usuario usuario)
+        public int AgregarUsuario(BE_Usuario usuario)
         {
             usuario.Contrasena = Encriptado.Hashear(usuario.Contrasena);
             return DALUsuario.Agregar(usuario);
         }
 
+        public bool AgregarRelacionUP(BE_Usuario usuario)
+        {
+            return DALUsuario.AgregarRelacionUP(usuario);
+        }
+
         public bool EliminarUsuario(BE_Usuario usuario)
         {
+                   DALUsuario.EliminarRelacionUP(usuario);
             return DALUsuario.Eliminar(usuario);
+        }
+
+        public bool EliminarRelacionUP(BE_Usuario usuario)
+        {
+            return DALUsuario.EliminarRelacionUP(usuario);
         }
 
         public bool ModificarUsuario(BE_Usuario usuario)

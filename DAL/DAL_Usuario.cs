@@ -30,13 +30,13 @@ namespace DAL
                 foreach(DataRow Row in TablaD.Rows)
                 {
                     BE_Usuario usuario = new BE_Usuario();
-                    BE_PermisoC PermisoUsuario = new BE_PermisoC();
-                    PermisoUsuario.Nombre = Row["Name"].ToString();
-                    PermisoUsuario.ID = Convert.ToInt32(Row["IDPermiso"]);
+                    //BE_PermisoC PermisoUsuario = new BE_PermisoC();
+                   // PermisoUsuario.Nombre = Row["Name"].ToString();
+                    //PermisoUsuario.ID = Convert.ToInt32(Row["IDPermiso"]);
                     usuario.ID = Convert.ToInt32(Row["ID"]);
                     usuario.Nombre = Row["NombreUsuario"].ToString();
                     usuario.Contrasena = Row["Contrasena"].ToString();
-                    usuario.Permiso = PermisoUsuario;
+                    //usuario.Permiso = PermisoUsuario;
 
                     DAL_BaseDatos DAL2 = new DAL_BaseDatos();
                     TablaH = new Hashtable();
@@ -78,20 +78,27 @@ namespace DAL
             string Consulta = "S_Loguearse";
             TablaH = new Hashtable();
             TablaH.Add("@Nombre", Nombre);
-
             TablaH.Add("@Contrasena", Contrasena);
             DataTable TablaProv = DAL.LeerBase(Consulta, TablaH);
             return TablaProv.Rows.Count > 0;
         }
 
-        public bool Agregar(BE_Usuario usuario)
+        public int Agregar(BE_Usuario usuario)
         {
             string Consulta = "S_AgregarUsuario";
             TablaH = new Hashtable();
             TablaH.Add("@Nombre", usuario.Nombre);
             TablaH.Add("@Contrasena", usuario.Contrasena);
-            TablaH.Add("@IDPermiso", usuario.Permiso.ID);
-            return DAL.EscribirBase(Consulta, TablaH);
+            return DAL.EscribirBaseID(Consulta, TablaH);
+        }
+
+        public bool AgregarRelacionUP (BE_Usuario Usuario)
+        {
+            string Consulta = "S_AgregarRelacionUP";
+            TablaH = new Hashtable();
+            TablaH.Add("@IDUsuario", Usuario.ID);
+            TablaH.Add("@IDPermiso", Usuario.IDPermiso);
+            return DAL.EscribirBase(Consulta,TablaH);
         }
 
         public bool Eliminar(BE_Usuario usuario)
@@ -102,6 +109,14 @@ namespace DAL
             return DAL.EscribirBase(Consulta, TablaH);
         }
 
+        public bool EliminarRelacionUP(BE_Usuario Usuario)
+        {
+            string Consulta = "S_EliminarRelacionUP";
+            TablaH = new Hashtable();
+            TablaH.Add("@IDUsuario", Usuario.ID);
+            return DAL.EscribirBase(Consulta, TablaH);
+        }
+
         public bool Modificar(BE_Usuario usuario)
         {
             string Consulta = "S_ModificarUsuario";
@@ -109,7 +124,6 @@ namespace DAL
             TablaH.Add("@ID", usuario.ID);
             TablaH.Add("@Nombre", usuario.Nombre);
             TablaH.Add("@Contrasena", usuario.Contrasena);
-            TablaH.Add("@IDPermiso", usuario.Permiso.ID);
             return DAL.EscribirBase(Consulta,TablaH);
         }
     }

@@ -55,18 +55,20 @@ namespace InterfazUsuario.Interfaces
                     BE_Usuario UsuarioCreado = new BE_Usuario();
                     UsuarioCreado.Nombre = txbNombre.Text;
                     UsuarioCreado.Contrasena = txbContrasena.Text;
-                    UsuarioCreado.Permiso = (BE_Permiso)lsbPermiso.SelectedItem;
-
-                    BE_Permiso PermisoSeleccionado = (BE_Permiso)lsbPermiso.SelectedItem;
-                    UsuarioCreado.ID = PermisoSeleccionado.ID;
-
-                    if (BLLUsuario.AgregarUsuario(UsuarioCreado) == true) 
+                    List<BE_Permiso> PermisosSeleccionados = new List<BE_Permiso>();
+                    
+                    foreach(BE_Permiso Permiso in this.lsbPermiso.SelectedItems)
                     {
-                        MessageBox.Show("Se agrego el usuario correctamente");
+                        PermisosSeleccionados.Add(Permiso);
                     }
-                    else
+                    BE_Permiso PermisoSeleccionado = (BE_Permiso)lsbPermiso.SelectedItem;
+                    UsuarioCreado.ID = BLLUsuario.AgregarUsuario(UsuarioCreado);
+                    UsuarioCreado.ListaPermisos = PermisosSeleccionados;
+
+                    foreach(BE_Permiso permiso in UsuarioCreado.ListaPermisos)
                     {
-                        MessageBox.Show("No se pudo agregar el usuario");
+                        UsuarioCreado.IDPermiso = permiso.ID;
+                        BLLUsuario.AgregarRelacionUP(UsuarioCreado);
                     }
                     ActualizarForm();
                 }
@@ -142,8 +144,21 @@ namespace InterfazUsuario.Interfaces
                         UsuarioModificado.Nombre = txbNombre.Text;
                         UsuarioModificado.Contrasena = txbContrasena.Text;
                         UsuarioModificado.ID = UsuarioSeleccionado.ID;
-                        UsuarioModificado.Permiso = (BE_Permiso)lsbPermiso.SelectedItem;
+                        List<BE_Permiso> PermisosSeleccionados = new List<BE_Permiso>();
 
+                        foreach (BE_Permiso Permiso in this.lsbPermiso.SelectedItems)
+                        {
+                            PermisosSeleccionados.Add(Permiso);
+                        }
+                        UsuarioModificado.ListaPermisos = PermisosSeleccionados;
+
+                        BLLUsuario.EliminarRelacionUP(UsuarioModificado);
+
+                        foreach (BE_Permiso permiso in UsuarioModificado.ListaPermisos)
+                        {
+                            UsuarioModificado.IDPermiso = permiso.ID;
+                            BLLUsuario.AgregarRelacionUP(UsuarioModificado);
+                        }
                         BLLUsuario.ModificarUsuario(UsuarioModificado);
                         ActualizarForm();
                     }

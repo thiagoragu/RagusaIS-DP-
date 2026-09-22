@@ -72,7 +72,7 @@
             // 
             // btnLoguearse
             // 
-            this.btnLoguearse.Location = new System.Drawing.Point(42, 96);
+            this.btnLoguearse.Location = new System.Drawing.Point(39, 96);
             this.btnLoguearse.Name = "btnLoguearse";
             this.btnLoguearse.Size = new System.Drawing.Size(158, 23);
             this.btnLoguearse.TabIndex = 3;

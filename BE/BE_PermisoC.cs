@@ -44,5 +44,29 @@ namespace BE
 
             return false;
         }
+
+        public bool TienePermiso2(BE_Permiso permiso)
+        {
+            if (permiso == null)
+                return false;
+
+            // 1. Verificación directa (si el objeto actual o su ID coincide)
+            if (this.ID == permiso.ID)
+                return true;
+
+            // 2. Búsqueda recursiva en la lista de permisos contenidos (_permisos)
+            if (_permisos != null)
+            {
+                foreach (BE_Permiso p in _permisos)
+                {
+                    // Llama recursivamente a TienePermiso de cada elemento.
+                    // Si 'p' es a su vez un BE_PermisoC, evaluará sus propios hijos de forma descendente.
+                    if (p.TienePermiso(permiso))
+                        return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

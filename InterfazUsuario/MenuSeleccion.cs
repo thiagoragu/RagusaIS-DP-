@@ -59,14 +59,16 @@ namespace InterfazUsuario
 
             if (SesionSingleton.Instance.EstaLogueado())
             {
+
                 lblEstado.Text = "Logueado";
-                this.mnuRegistroHistoricos.Enabled = usuario.Permiso.TienePermiso(RegistroHistorico);
-                this.mnuControlIdiomas.Enabled = usuario.Permiso.TienePermiso(Idioma);
-                this.mnuManejoUsuarios.Enabled = usuario.Permiso.TienePermiso(ManejoUsuarios);
-                this.mnuControlPermisos.Enabled = usuario.Permiso.TienePermiso(ControlPermisos);
-                this.mnuHistoricoLogueos.Enabled = usuario.Permiso.TienePermiso(HistoricoLogueos);
-                this.mnuControlProductos.Enabled = usuario.Permiso.TienePermiso(ControlProductos);
-                this.mnuControlStock.Enabled = usuario.Permiso.TienePermiso(ControlStock);
+
+                this.mnuRegistroHistoricos.Enabled = usuario.ListaPermisos.Any(p => p.TienePermiso(RegistroHistorico));
+                this.mnuControlIdiomas.Enabled = usuario.ListaPermisos.Any(p => p.TienePermiso(Idioma));
+                this.mnuManejoUsuarios.Enabled = usuario.ListaPermisos.Any(p => p.TienePermiso(ManejoUsuarios));
+                this.mnuControlPermisos.Enabled = usuario.ListaPermisos.Any(p => p.TienePermiso(ControlPermisos));
+                this.mnuHistoricoLogueos.Enabled = usuario.ListaPermisos.Any(p => p.TienePermiso(HistoricoLogueos));
+                this.mnuControlProductos.Enabled = usuario.ListaPermisos.Any(p => p.TienePermiso(ControlProductos));
+                this.mnuControlStock.Enabled = usuario.ListaPermisos.Any(p => p.TienePermiso(ControlStock));
                 this.mnuUsuario.Enabled = false;
             }
             else
@@ -175,6 +177,7 @@ namespace InterfazUsuario
            this.mnuControlIdiomas.Text = BLL_Idioma.GetTraduccion(this.mnuControlIdiomas.Tag.ToString(), Idioma);
            this.mnuHistoricoLogueos.Text = BLL_Idioma.GetTraduccion(this.mnuHistoricoLogueos.Tag.ToString(), Idioma);
            this.mnuControlProductos.Text = BLL_Idioma.GetTraduccion(this.mnuControlProductos.Tag.ToString(), Idioma);
+           this.mnuControlStock.Text = BLL_Idioma.GetTraduccion(this.mnuControlStock.Tag.ToString(), Idioma);
            this.mnuRegistroHistoricos.Text = BLL_Idioma.GetTraduccion(this.mnuRegistroHistoricos.Tag.ToString(), Idioma);
            this.lblEstado.Text = BLL_Idioma.GetTraduccion(this.lblEstado.Tag.ToString(), Idioma);
            this.btnDesloguearse.Text = BLL_Idioma.GetTraduccion(this.btnDesloguearse.Tag.ToString(), Idioma);

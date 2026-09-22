@@ -135,6 +135,7 @@
             this.lsbPermiso.FormattingEnabled = true;
             this.lsbPermiso.Location = new System.Drawing.Point(99, 260);
             this.lsbPermiso.Name = "lsbPermiso";
+            this.lsbPermiso.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lsbPermiso.Size = new System.Drawing.Size(203, 108);
             this.lsbPermiso.TabIndex = 7;
             // 
